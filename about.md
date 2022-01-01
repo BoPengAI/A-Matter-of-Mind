@@ -10,6 +10,6 @@ I use this space to organize and present my thoughts on intelligence and conscio
 
 It's an exciting time to be alive to witness the current phase of rapid progress, exploration, and discovery in AI and neuroscience. I'm giddy with the child-like bated breath that a new world is unfolding before my eyes.
 
-My PhD is in non-linear dynamics, chemical oscillations and chaos. My postdoc is in non-equilibrium thermodynamics. My job is a quant. Please excuse my (probably often) transgressions of math.
+My PhD is in non-linear dynamics, chemical oscillations and chaos. My postdoc is in non-equilibrium thermodynamics. My job is a quant. Please excuse my (probably often) transgressions in math.
 
 [contact me](mailto: bopeng@yahoo.com)
