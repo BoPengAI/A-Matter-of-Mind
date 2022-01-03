@@ -1,32 +1,29 @@
-<h1 style="text-align: center;">A Measure of General Intelligence</p>
-
 ## Special Intelligence vs General Intelligence
+Tremendous strides have been made in AI in recent years. Vast majority of the advances are in what I’d call Special Intelligence (SI), the type of model with a pre-defined set of goals, an optimization problem expressed in general as argmax. The set of goals is defined in either the code or the training data, or often a combination of both.
 
-AI, or more specifically Deep Learning (DL) for the most part, has made tremendous strides in recent years in both research and application. Vast majority of the advances are in what I’d call Special Intelligence (SI), the type of intelligence with a set of goals, an optimization problem expressed in general as argmax. The set of goals is defined in either the code or the training data, or both.
+Some very interesting results have been achieved in expanding the goal set without rewriting the code. DeepMind’s [MuZero](https://deepmind.com/blog/article/muzero-mastering-go-chess-shogi-and-atari-without-rules]) has learned several games without prior knowledge of the rules or even representation of the game in focus. Transfer learning has made many exciting progress. However, the goal set is still likely limited by the model design, e.g., open (all information are out in the open) vs closed games, open-ended vs close-ended, fixed vs flexible rule sets.
 
-Some very interesting results have been achieved in expanding the goal set without rewriting the code. DeepMind’s [MuZero](https://deepmind.com/blog/article/muzero-mastering-go-chess-shogi-and-atari-without-rules]) has learned several games without prior knowledge of the rules or even representation of the game in focus. Transfer learning has made many exciting progress. However, the goal set is still likely limited by the model design, e.g., open vs closed games, open-ended vs close-ended, fixed vs flexible rule sets.
+A notable exception to the SI dominance is Marcus Hutter’s [AIXI](http://hutter1.net/ai/uai.htm). It establishes a theoretical foundation for the most intelligent general-purpose agent. Its role to AI is analogous to what universal Turing machine is to computing. AIXI implies that GI is the ability to adapt to change in the environment and input.
 
-A notable exception to the SI dominance is Marcus Hutter’s [AIXI](http://hutter1.net/ai/uai.htm). It establishes a theoretical foundation for the most intelligent general-purpose agent. Its role to AI is analogous to what universal Turing machine is to computing. AIXI implies that GI is, in words, the ability to adapt to change in the environment and input.[](https://)
+A few notes:
 
-A few interesting notes:
+1. “Life as we know it” is obviously a GI agent, with evolution as its algorithm and the goal of surviving the current environment as well as the next environmental scenario change. The “next change” part is important; evolution is an open-ended arms race between the environment and a lifeform’s arsenal for predicting the change, sensing the ongoing change, and adapting to it. For example, [by going on-shore and sharpening vision sensors](https://www.preposterousuniverse.com/podcast/2019/03/25/episode-39-malcolm-maciver-on-sensing-consciousness-and-imagination/) (remote sensing compared to underwater world), early land life gained much longer early-warning time. This means more value in the accuracy and time-horizon of prediction, hence higher intelligence.
 
-1.       “Life as we know it” is obviously a GI agent, with evolution as its algorithm and the goal of surviving the current environment as well as the next environmental scenario change. The “next change” part is important; evolution is an open-ended arms race between the environment and a lifeform’s arsenal for predicting the change, sensing the ongoing change, and adapting to it. For example, [by going on-shore and sharpening vision sensors](https://www.preposterousuniverse.com/podcast/2019/03/25/episode-39-malcolm-maciver-on-sensing-consciousness-and-imagination/) (remote sensing compared to underwater world), early land life gained much longer early-warning time. This means more value in accurate prediction, hence intelligence.
-
-2.        There’s probably wide consensus that GI is not consciousness, even without much consensus on the exact definition of the latter. But since we are here talking about this, consciousness must be either equivalent to GI, co-emergent with it, or emergent from it, setting aside the possibility of consciousness preceding GI. This relationship deserves in-depth scrutiny, not just fan-studies of Lt. Data.
+2. There’s probably wide consensus that GI is not consciousness, even without much consensus on the latter's definition. But since we are here talking about this, consciousness must be either equivalent to GI, co-emergent with it, or emergent from it. I'm leaving out the possibility of consciousness preceding GI, or even [matter](http://cogsci.uci.edu/~ddhoff/Chapter17Hoffman.pdf) to avoid entanglement in meta-physics.
 
 I’m proposing here an implementable quantity that measures GI.
 
-A Measure of GI
+## A Measure of GI
 
-In words, GI should mean the ability to modify its own model, thus behavior, as the context, which includes the environment and the history, changes.
+GI <i>should</i> mean the ability for an agent to modify its own model when given the same input, as the context changes. The context includes the environment and the history -- of the environment, the agent's input, and its output (predictions/decisions/actions).
 
 This excludes all of what we colloquially call “inanimate” entities, even those with very complicated, including chaotic, behaviors. I don’t want to go into the philosophical discussion of whether there is anything but inanimate entities. Let’s stop at such behavior that can be modeled, either deterministically or statistically, with “reasonable” precision under a “reasonably” diverse set of environmental scenarios.
 
-The highlighted ambiguity above is a key difference where the current approach retreats from AIXI. The current goal is to provide an implementable framework, not theoretical completeness. OK, on to some symbols.
+The highlighted ambiguity above is a key difference where the current approach retreats from AIXI. The current goal is to provide an implementable framework, not theoretical completeness.
 
-Consider the following setup:
+OK, on to some symbols. Consider the following setup:
 
-An agent, at discrete time step I, receives input I-sub-I from environment E-sub-I, and produces ioutput O-sub-i. Subscription I implies history of the environment, input, and output. The change in behavior as the history and environment change C = E + H, given identical input I-sub-i, can be expressed as
+An agent, at discrete time step $$i$$, receives input $$I_i$$ from environment $$E_i$$, and produces output $$O_i$$. Let's define context $$C$$ as the join of environment $$E$$ and history $$H$$, $$C = E + H$$, given identical input I-sub-i, can be expressed as
 
                                                                                                               (E1)
 
