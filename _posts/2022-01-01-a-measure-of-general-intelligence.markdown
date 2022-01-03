@@ -19,7 +19,16 @@ GI <i>should</i> mean the ability for an agent to modify its own model when give
 
 This excludes all of what we colloquially call “inanimate” entities, even those with very complicated, including chaotic, behaviors. I don’t want to go into the philosophical discussion of whether there is anything but inanimate entities. Let’s stop at such behavior that can be modeled, either deterministically or statistically, with “reasonable” precision under a “reasonably” diverse set of environmental scenarios.
 
-The highlighted ambiguity above is a key difference where the current approach retreats from AIXI. The current goal is to provide an implementable framework, not theoretical completeness.
+The highlighted ambiguity above is a key difference where the current approach retreats from AIXI. The current goal is to provide an implementable framework, not theoretical completeness. But, first,
+
+### What do you mean by measuring GI?
+When it comes to GI, we have to allow the very likely possibility of the measure of GI is not merely a passive, invisible, omnipresent God observer, but rather a presumably equally intelligent agent interacting with the subjcet agent. An Interrogator. By interacting with the subject, the Interrogator can perform systematic tests to reach a conclusion.
+
+### Interrogator Suprise model
+
+The measurer of agent is the interrogator. It controls, or at leat has read access to, the E(nvironment) and I(nput), and observes the O(utput). Its goal is to measure the GI of the agent. So it makes a set of all behaviors it considers inanimate, compares with O, and notes any positive/negative surprises, and keeps a running sum for each predictive model. At any point in time, it can look at the minimum running sum from the set: if it differs from 0 in a statistically significant way, then the agent is likely in the range that the interrogator <b>considers</b> to be intelligent. The deviation from 0 of the minimum running sum could be a measure of GI.
+
+A lava lamp could conceivably be considered intelligent
 
 OK, on to some symbols. Consider the following setup:
 
