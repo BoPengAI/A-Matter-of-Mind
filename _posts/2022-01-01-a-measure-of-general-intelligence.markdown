@@ -37,28 +37,29 @@ The measurer of agent $$\mathbb{A}$$ is the interrogator $$\mathbb{I}$$. It cont
 
 <div style="text-align: right">$$RGI_{\mathbb{A}|\mathbb{I}} = \min_{M_i}\frac{\begin{vmatrix}\sum_{j}(P_j(M_i)-O_j)\end{vmatrix}}{\sigma((P_j(M_i)-O_j))}$$ (E1)</div>
 
-By now the word "inanimate" has probably set off many alarms. It's reasonable to [question](https://www.theatlantic.com/notes/2016/06/free-will-exists-and-is-measurable/486551/) whether there's anything but inaimate objects in the universe. Once again I'll just wimp out of the very interesting phisolophical discussion of free will here and stay willfully heuristic; anything you can predict with "reasonable" accuracy is inanimate. 
+where $$\sigma$$ is the stdev (leaving out all details about the distribution), to eliminate cheating by increasing variance.
 
-Does this imply that GI is equivalent to unpredictability? I'd say yes, with details deferred to another post. 
+By now the word "inanimate" has probably set off alarms among many GI agents. It's reasonable to [question](https://www.theatlantic.com/notes/2016/06/free-will-exists-and-is-measurable/486551/) whether there's anything but inanimate entities in the universe. Once again I'll just wimp out of the very interesting phisolophical discussion of free will here and stay willfully, resolutely heuristic; anything you can predict with "reasonable" accuracy is inanimate. 
 
-A few observations that need more rigorous proof or refutation:
+Does this imply that GI is equivalent to unpredictability or complexity? I'd say yes in some sense, but the meaning of unpredictability needs some clarification beyond deterministic vs stochastic. I'll present that in another post.
 
-1.       For Markov agents, H=0, the expected value of the term in E1 is zero, therefore G=0.
+Another immediate implication is that there seems no reason to think RGI is bounded. This is consistent with the intuition that GI is not an optimization problem (unless in the AIXI "complete knowledge" sense). Also, intuitively, if the subject agent's intelligence is MUCH higher than that of the interrogator, it would appear simply unknowable to the latter. The existence of an upper bound is unknowable. For any GI agent, the best it can hope for is to do better, but never the best.
 
-2.       For deterministic, differentiable agents, the behavior is path independent in the fully specified state space, i.e., E1=0, therefore G=0.
+Some boundary cases:
+1. Any stochastic process with stable expectation, or in addition any predictable drift, has $$RGI=0$$ because there is at least one model, by definition, that reduces prediction error, i.e. cognitive dissonance, to 0.
+2. Any non-pathologically (yes, just one of many cheap get-aways employed here) determinstic process has $$RGI=0$$.
+3. What if you always include a model with uniform distribution over infinite interval ($$\sigma\to\infty$$)? This will always have the minimum normalized running sum of 0. Let's just call it pathological, biased interrogator, discrimination, banned.
 
-3.       For deterministic, non-differentiable (such as chaotic) agents, the summation in E2 should canceled out across the input space as long as the contextual state space and the output space are bounded. This is speculative at this point.
+So it passes some quick boundary sanity checks. But how do you achieve $$RGI>0$$?
 
-4.       This leaves only one possibility for achieving G>0, non-Markovia, non-deterministic agents. Bayesian inference is one such example. Open-ended, adaptive evolution is another. But this is a necessary condition, not sufficient.
+You'll have to be smarter than the interrogator (<i>you're welcome</i>) in the sense that you can defy all of $$\mathbb{I}$$'s predictive models at least sometimes. The more often you defy predictions, the more intelligent you appear until in the limit you defy all predictions all the time. You are unknowable at this point. Welcome to Deityhood.
 
-5.       I deliberately avoided “stochastic” in the above. Once again using evolution as an example. The formation of the genesis cell might have to rely on random trial and error. Once it’s formed, and especially after the emergence of sexual reproduction, there is an increasing element of self-directed adaptation. This is not random. GI seems to require this no-man’s land between stochastic and deterministic models, which I’d call adaptive in contrast.
+An important class of predictive models is pattern recognition. To the extend that $$\mathbb{I}$$ can recognize patterns in $$\mathbb{A}$$'s behavior, the latter is unintelligent, uninteresting. The more converage of behavior by the recognized patterns, the less intelligent $$\mathbb{A}$$ is relative to $$\mathbb{I}$$. This is directly reflected in the prediction error term in (E1).
 
-6.       Survival of the agent is implicitly imperative. However, an agent needs not to be an individual lifeform as we are familiar with, as is survival not limited to physical survival. Indeed, definition of human being in biological terms is impossible considering the vast number of microbes all human lives depend on, as well as the persistent genetic flow from various microbes. The emergence of collective culture provided a scalable mechanism for the informational survival to transcend individual physical lives. It’s easy to see how agents could be defined at the collective and/or informational sense; civilizational survival is a thing.
+OK, now we're ready to implement.
 
-7.       It may be worth singling out the fact that physical survival is not of particular value in general. An AGI agent needs not to pay particular attention to sustaining any particular physical medium. Unless the design allows it, intentionally or not, robots have no a priori incentives for self-preservation, not to mention colonization or enslavement of anything. These instincts are merely vestiges of human’s particular evolutionary history.
+###Some Thoughts on Implementation
 
-8.       One possible implementation to achieve G>0 is to predict the change in environment and future inputs in such a way that prolongs the agent’s survival, so as to increase the number of terms (life experiences) in E2. This is a quantitative way of stating the evolutionary advantage of intelligence.
+The word implementable is a bit of exaggeration. It's not exactly implementable for any GI agent to exhaust all of its own predictive models, simply by the logical fallacy of complete self-awareness. We can get some help from examining how we think.
 
-GI Is Not An Optimization Problem
-
-As stated near the beginning, SI are all optimization problems with some kind of well-defined objective functions. In contrast, GI are not because there is no reason to believe E2 is bounded in general. This underscores the open-endedness of adaptive models. GI strives to be better, but not necessarily the best.
+Let's say you see a flying object, which is always UFO until identified. First you focus on predictive models in the visual domain, and further the flying subset. This sounds pretty vague but is a huge reduction from the set of all models. Then we use Occam's Razor to quickly evaluate a subset of minimal models, and then reduce it in the [Solomonff's indeuction](https://en.wikipedia.org/wiki/Solomonoff%27s_theory_of_inductive_inference) sense -- flying straight? Constant speed? Constant shape/color? By the time you quickly eliminate a dozen or so such minimal models, you're freaking out a little.
