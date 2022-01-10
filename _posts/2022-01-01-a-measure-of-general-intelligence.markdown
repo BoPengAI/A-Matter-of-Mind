@@ -1,4 +1,4 @@
-## Special Intelligence vs General Intelligence
+### Special Intelligence vs General Intelligence
 
 Tremendous strides have been made in AI in recent years. Vast majority of the advances are in what I’d call Special Intelligence (SI), the type of model with a pre-defined set of goals, an optimization problem expressed in general as argmax. The set of goals is defined in either the code or the training data, or often a combination of both.
 
@@ -58,7 +58,7 @@ An important class of predictive models is pattern recognition. To the extend th
 
 OK, now we're ready to implement.
 
-###Some Thoughts on Implementation
+### Some Thoughts on Implementation
 
 The word implementable is a bit of exaggeration. It's not exactly implementable for any GI agent to exhaust all of its own predictive models, simply by the logical fallacy of complete self-awareness. We can get some help from examining how we think.
 
