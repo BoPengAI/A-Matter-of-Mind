@@ -35,7 +35,7 @@ Here's the setup.
 
 The measurer of agent $$\mathbb{A}$$ is the interrogator $$\mathbb{I}$$. It controls, or at least has read access to, the $$E$$(nvironment) and $$I$$(nput) received by the subject agent, and observes the $$O$$(utput) produced by it. Its goal is to measure the GI of the agent. To do this, it constructs a set of predictive models, $$\{M_0, M_1, ...M_n\}$$, for all behaviors it considers inanimate, compares with $$O$$, and notes any prediction error $$P(M_i)-O_j$$ for model $$M_i$$ and output $$O_j$$ at time j. At any point in time, it can look at the minimum absolute value of running sums, possibly weighted for different models, from the set: if it differs from 0 in a statistically significant way, then the agent is likely in the range that the interrogator <i>considers</i> to be intelligent. The deviation from 0 of the minimum running sum is a measure of GI of $$\mathbb{A}$$ relative to $$\mathbb{I}$$ at time t.
 
-<div style="text-align: right">$$RGI_{\mathbb{A}|\mathbb{I}} = \min_{M_i}\begin{vmatrix}\sum_{j}(P_j(M_i)-O_j)\end{vmatrix}$$ (E1)</div>
+<div style="text-align: right">$$RGI_{\mathbb{A}|\mathbb{I}} = \min_{M_i}\frac{begin{vmatrix}\sum_{j}(P_j(M_i)-O_j)\end{vmatrix}}{\sigma(M_i)-O_j)}$$ (E1)</div>
 
 By now the word "inanimate" has probably set off many alarms. It's reasonable to [question](https://www.theatlantic.com/notes/2016/06/free-will-exists-and-is-measurable/486551/) whether there's anything but inaimate objects in the universe. Once again I'll just wimp out of the very interesting phisolophical discussion of free will here and stay willfully heuristic; anything you can predict with "reasonable" accuracy is inanimate. 
 
