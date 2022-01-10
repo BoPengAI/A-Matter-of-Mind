@@ -24,7 +24,7 @@ When it comes to GI, though, we have to allow the very likely possibility of the
 
 Let's unpack this a little.
 1. GI is an exception in our measurement because it is right at our level of intelligence, the limit of our cognition by definition. Any measure that can be delegated to a disembodied, pre-defined set of queries that we design can be defeated by something designed by someone else of equal intelligence. Measuring GI has to be open-ended and interactive. An open-ended, interactive game between two agents. Turing test may not be a good test per se but it captures the very essence of what it means to measure GI. We just need to come up with a better test design.
-2. GI therefore is intrinsically relative. This should not be controversial. My Roomba appeared to be intelligent to my dog for about half an hour. Then she figured it's not worthy of much attention, however annoying it may be. But Boston Dynamics' [robot dogs](https://www.youtube.com/watch?v=RYzn_gmFs5w) could appear as intelligent as her fellow dogs.
+2. GI therefore is intrinsically relative. This should not be controversial. My Roomba appeared to be intelligent to my dog for about half an hour. Then she figured it's not worthy of much attention, however annoying it may be. But Boston Dynamics' [robot dogs](https://www.youtube.com/watch?v=RYzn_gmFs5w) could appear as intelligent as her peers.
 3. This is not contradictory to AIXI. AIXI requires knowledge "over all possible future perceptions created by all possible environments q that are consistent with past perceptions," i.e., a God. Here I'm focusing on what a mere mortal could achieve, in the here and now.
 
 Let's try to be a little more precise.
@@ -35,7 +35,7 @@ Here's the setup.
 
 The measurer of agent $$\mathbb{A}$$ is the interrogator $$\mathbb{I}$$. It controls, or at least has read access to, the $$E$$(nvironment) and $$I$$(nput) received by the subject agent, and observes the $$O$$(utput) produced by it. Its goal is to measure the GI of the agent. To do this, it makes a set of predictive models, $$\{M_0, M_1, ...M_n\}$$, for all behaviors it considers inanimate, compares with $$O$$, and notes any prediction error $$P(M_i)-O_j$$ for model $$M_i$$ and output $$O_j$$ at time j. At any point in time, it can look at the minimum absolute value of running sums, possibly weighted for different models, from the set: if it differs from 0 in a statistically significant way, then the agent is likely in the range that the interrogator <b>considers</b> to be intelligent. The deviation from 0 of the minimum running sum is a measure of GI of $$\mathbb{A}$$ relative to $$\mathbb{I}$$ at time t.
 
-<div style="text-align: right">$$\min_{M_i}\begin{vmatrix}\sum_{j}(P_j(M_i)-O_j)\end{vmatrix}$$             (E1)</div>
+<div style="text-align: right">$$RGI_{\mathbb{A}|\mathbb{I}} = \min_{M_i}\begin{vmatrix}\sum_{j}(P_j(M_i)-O_j)\end{vmatrix}$$ (E1)</div>
 
 
 
