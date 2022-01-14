@@ -1,1 +1,0 @@
-I was quite surprised to read about a [new theory](https://www.nature.com/articles/s41583-021-00548-3) that forgetting can be a learning strategy. It makes perfect sense, of course. But I thought it was commonly accepted.
