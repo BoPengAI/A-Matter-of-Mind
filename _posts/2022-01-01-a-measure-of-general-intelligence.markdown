@@ -1,6 +1,6 @@
 ### Special Intelligence vs General Intelligence
 
-Tremendous strides have been made in AI in recent years. Vast majority of the advances are in what I’d call Special Intelligence (SI), the type of model with a pre-defined set of goals, an optimization problem expressed in general as argmax. The set of goals is defined in either the code or the training data, or often a combination of both.
+Tremendous strides have been made in AI in recent years. But vast majority of the advances are in what Special Intelligence (SI), the type of model with a pre-defined set of goals, an optimization problem expressed in general as argmax. The set of goals is defined in either the code or the training data, or often a combination of both.
 
 Some very interesting results have been achieved in expanding the goal set without rewriting the code. DeepMind’s [MuZero](https://deepmind.com/blog/article/muzero-mastering-go-chess-shogi-and-atari-without-rules]) has learned several games without prior knowledge of the rules or even representation of the game in focus. Transfer learning has made many exciting progress. However, the goal set is still likely limited by the model design, e.g., open (all information are out in the open) vs closed games, open-ended vs close-ended, fixed vs flexible rule sets.
 
@@ -29,34 +29,36 @@ Let's unpack this a little.
 
 Let's try to be a little more precise.
 
-### Interrogator Cognitive Dissonance Model
+### Agent-Interrogator Measure
 
 Here's the setup.
 
-The measurer of agent $$\mathbb{A}$$ is the interrogator $$\mathbb{I}$$. It controls, or at least has read access to, the $$E$$(nvironment) and $$I$$(nput) received by the subject agent, and observes the $$O$$(utput) produced by it. Its goal is to measure the GI of the agent. To do this, it constructs a set of predictive models, $$\{M_0, M_1, ...M_n\}$$, for all behaviors it considers inanimate, compares with $$O$$, and notes any prediction error $$P(M_i)-O_j$$ for model $$M_i$$ and output $$O_j$$ at time j. At any point in time, it can look at the minimum absolute value of running sums, possibly weighted for different models, from the set: if it differs from 0 in a statistically significant way, then the agent is likely in the range that the interrogator <i>considers</i> to be intelligent. The deviation from 0 of the minimum running sum is a measure of GI of $$\mathbb{A}$$ relative to $$\mathbb{I}$$ at time t.
+The measurer of agent $$\mathbb{A}$$ is the interrogator $$\mathbb{I}$$. It controls, or at least has read access to, the $$E$$(nvironment) and $$I$$(nput) received by the subject agent, and observes the $$O$$(utput) produced by it. Its goal is to measure the GI of the agent. To do this, it constructs a set of predictive models, $$\{M_0, M_1, ...M_n\}$$, compares with $$O$$, and notes any prediction error $$P(M_i)-O_j$$ for model $$M_i$$ and output $$O_j$$ at time j. At any point in time, it can look at the minimum absolute value of running sums, possibly weighted for different models, from the set: if it differs from 0 in a statistically significant way, then the agent is likely in the range that $$\mathbb{I}$$ <i>considers</i> to be intelligent. The deviation from 0 of the minimum running sum is a measure of GI of $$\mathbb{A}$$ relative to $$\mathbb{I}$$ at time t.
 
-<div style="text-align: right">$$RGI_{\mathbb{A}|\mathbb{I}} = \min_{M_i}\frac{\begin{vmatrix}\sum_{j}(P_j(M_i)-O_j)\end{vmatrix}}{\sigma((P_j(M_i)-O_j))}$$ (E1)</div>
+<div style="text-align: right">$$RGI_{\mathbb{A}|\mathbb{I}} = \underset{M_i}{argmin}\begin{bmatrix}w_i*\frac{\begin{vmatrix}\sum_{j}(P_j(M_i)-O_j)\end{vmatrix}}{\sigma((P_j(M_i)-O_j))}\end{bmatrix}$$(E1)  (E1)</div>
 
-where $$\sigma$$ is the stdev (leaving out all details about the distribution), to eliminate cheating by increasing variance.
+where 
+  $$\sigma$$ is the stdev of prediction error (leaving out all details about the distribution), to eliminate cheating by increasing variance, and
+  $$w_i$$ is the weight for model $$M_i$$.
 
-By now the word "inanimate" has probably set off alarms among many GI agents. It's reasonable to [question](https://www.theatlantic.com/notes/2016/06/free-will-exists-and-is-measurable/486551/) whether there's anything but inanimate entities in the universe. Once again I'll just wimp out of the very interesting phisolophical discussion of free will here and stay willfully, resolutely heuristic; anything you can predict with "reasonable" accuracy is inanimate. 
+Let's first check some boundary cases:
+1. Any stochastic process with stable expectation, or in addition any predictable drift, has $$RGI=0$$ because there is at least one model, by definition, that reduces minimum prediction error to 0 as long as $$\mathbb{I}$$ can come up with it.
+2. Any determinstic process has $$RGI=0$$ if $$\mathbb{I}$$ is smart enough.
+3. What if you always include a model with uniform distribution over infinite interval ($$\sigma\to\infty$$)? This will always have the minimum normalized running sum of 0. Let's just call it pathological, no fair, biased interrogator, banned.
+4. An important class of predictive models is pattern recognition. To the extent that $$\mathbb{I}$$ can recognize patterns in $$\mathbb{A}$$'s behavior, the latter is unintelligent, uninteresting. The more converage of behavior by the recognized patterns, the less intelligent $$\mathbb{A}$$ is relative to $$\mathbb{I}$$. This is intuitive, and directly reflected in the prediction error term in (E1).
 
-Does this imply that GI is equivalent to unpredictability or complexity? I'd say yes in some sense, but the meaning of unpredictability needs some clarification beyond deterministic vs stochastic. I'll present that in another post.
+So it passes some quick boundary sanity checks. Now some observations:
+1. The models can be learning, including SI and GI.
+2. Does this imply that GI is equivalent to unpredictability or complexity? I'd say yes in some sense, but the meaning of unpredictability needs some clarification beyond deterministic vs stochastic. I'll present that in another post.
+3. One possible choice for $$w_i$$ is $$2^{-k(M_i)}$$, where $$k(M_i)$$ is the Kolmogorov Complexity of model $$M_i$$. This would be [Solomonoff's Lightsaber](https://www.alignmentforum.org/tag/solomonoff-induction), a quantitative version of Occam's Razor.
+4. There seems no reason to think RGI is bounded. This is consistent with the intuition that GI is not an optimization problem (unless in the AIXI "complete knowledge" sense). Also, intuitively, if $$\mathbb{A}$$'s intelligence is MUCH higher than that of $$\mathbb{I}$$, it would appear simply unknowable to the latter. The existence of an upper bound is unknowable. For any GI agent, the best it can hope for is to do better, but never the best. Note that, although (E1) is written in argmin, it is about measuring GI rather than the learning process of either $$\mathbb{A}$$ or $$\mathbb{I}$$.
+5. Cognitive dissonance can be quantified, measured, as the minimum prediction error. If reducing the minimum is the objective function of GI, this could explain the deeply rooted and universal motivation, at least among humans and some animals (e.g., my dog) to reduce cognitive disonnance. GI agents are programmed to come up with models to reduce it, even if the model is flat Earth. Before you laugh at flat-earthers, though, remember that science constantly debates between keeping the old model framework (possibly with some modification) and going with a new one when new data don't fit -- there is a difference between the two of course but holding on to old model when challenged by new data is not automatically wrong.
 
-Another immediate implication is that there seems no reason to think RGI is bounded. This is consistent with the intuition that GI is not an optimization problem (unless in the AIXI "complete knowledge" sense). Also, intuitively, if the subject agent's intelligence is MUCH higher than that of the interrogator, it would appear simply unknowable to the latter. The existence of an upper bound is unknowable. For any GI agent, the best it can hope for is to do better, but never the best.
+But how do you achieve $$RGI>0$$?
 
-Some boundary cases:
-1. Any stochastic process with stable expectation, or in addition any predictable drift, has $$RGI=0$$ because there is at least one model, by definition, that reduces prediction error, i.e. cognitive dissonance, to 0.
-2. Any non-pathologically (yes, just one of many cheap get-aways employed here) determinstic process has $$RGI=0$$.
-3. What if you always include a model with uniform distribution over infinite interval ($$\sigma\to\infty$$)? This will always have the minimum normalized running sum of 0. Let's just call it pathological, biased interrogator, discrimination, banned.
+You'll have to be smarter than $$\mathbb{I}$$ (<i>you're welcome</i>) in the sense that you can defy all of $$\mathbb{I}$$'s predictive models at least sometimes. The more often you defy predictions, the more intelligent you appear until in the limit you defy all predictions all the time. You are unknowable at this point. Welcome to Deityhood.
 
-So it passes some quick boundary sanity checks. But how do you achieve $$RGI>0$$?
-
-You'll have to be smarter than the interrogator (<i>you're welcome</i>) in the sense that you can defy all of $$\mathbb{I}$$'s predictive models at least sometimes. The more often you defy predictions, the more intelligent you appear until in the limit you defy all predictions all the time. You are unknowable at this point. Welcome to Deityhood.
-
-An important class of predictive models is pattern recognition. To the extend that $$\mathbb{I}$$ can recognize patterns in $$\mathbb{A}$$'s behavior, the latter is unintelligent, uninteresting. The more converage of behavior by the recognized patterns, the less intelligent $$\mathbb{A}$$ is relative to $$\mathbb{I}$$. This is directly reflected in the prediction error term in (E1).
-
-OK, now we're ready to implement.
+This is very much an interactive game where $$\mathbb{I}$$ tries to predict the agent while the latter tries to defy it. It's a Turing test, but quantified.
 
 ### Some Thoughts on Implementation
 
